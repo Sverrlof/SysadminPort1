@@ -29,3 +29,7 @@ override.tf.json
 # example: *tfplan*
 
 terraform.tfvars
+
+rootkey (1).csv
+
+new_user_credentials.csv
