@@ -162,7 +162,7 @@ resource "aws_iam_role_policy" "ecs_fullaccess_role_policy" {
                 "sns:ListTopics"
             ],
             "Resource": [
-                "*"
+                "var.iamuser"
             ]
         },
         {
@@ -183,7 +183,7 @@ resource "aws_iam_role_policy" "ecs_fullaccess_role_policy" {
                 "ec2:DeleteSecurityGroup"
             ],
             "Resource": [
-                "*"
+                "var.iamuser"
             ],
             "Condition": {
                 "StringLike": {
@@ -195,7 +195,7 @@ resource "aws_iam_role_policy" "ecs_fullaccess_role_policy" {
             "Action": "iam:PassRole",
             "Effect": "Allow",
             "Resource": [
-                "*"
+                "var.iamuser"
             ],
             "Condition": {
                 "StringLike": {
@@ -277,4 +277,8 @@ resource "aws_iam_role_policy" "ecs_taskex_role_policy" {
     ]
 }
 EOF
+}
+
+variable "iamuser" {
+    type = string
 }
