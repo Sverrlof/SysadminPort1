@@ -66,6 +66,7 @@ resource "aws_route_table_association" "a" {
 }
 
 # AWS security group
+# Adds HTTPS, HTTP and SSH
 resource "aws_security_group" "allow_web" {
   name        = "allow_web_traffic"
   description = "Allow web inbound traffic"
@@ -149,3 +150,10 @@ resource "aws_instance" "server-one" {
         Name = "Server one"
     }
   }
+
+ resource "aws_instance" "role-test" {
+  ami = "ami-0dba2cb6798deb6d8"
+  instance_type = "t2.micro"
+  iam_instance_profile = aws_iam_instance_profile.sverrelofthus
+  key_name = "main-key"
+} 
