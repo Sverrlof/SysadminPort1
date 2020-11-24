@@ -1,4 +1,4 @@
-# Configure the AWS Provider
+/* # Configure the AWS Provider
 provider "aws" {
   region = "us-east-1"
   access_key = var.access_key
@@ -143,17 +143,10 @@ resource "aws_instance" "server-one" {
               sudo apt update -y
               sudo apt install apache2 -y
               sudo systemct1 start apache2
-              sudo bash -c 'echo Web server > /var/www/html/index.html'
+              sudo bash -c 'echo Kjell Inge > /var/www/html/index.html'
               EOF
 
     tags = {
         Name = "Server one"
     }
-  }
-
- resource "aws_instance" "role-test" {
-  ami = "ami-0dba2cb6798deb6d8"
-  instance_type = "t2.micro"
-  iam_instance_profile = aws_iam_instance_profile.sverrelofthus
-  key_name = "main-key"
-} 
+  } */
