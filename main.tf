@@ -1,4 +1,4 @@
-/* # Configure the AWS Provider
+# Configure the AWS Provider
 provider "aws" {
   region = "us-east-1"
   access_key = var.access_key
@@ -126,7 +126,7 @@ resource "aws_eip" "one" {
 }
 
 # Creates an aws instance
-resource "aws_instance" "server-one" {
+/* resource "aws_instance" "server-one" {
   ami           = "ami-0dba2cb6798deb6d8"
   instance_type = "t2.micro"
   availability_zone = "us-east-1a"
@@ -150,3 +150,23 @@ resource "aws_instance" "server-one" {
         Name = "Server one"
     }
   } */
+
+resource "aws_ecs_task_definition" "service" {
+  family = "servers"
+  container_definitions = file("servers.json")
+}
+
+# DEFINING NUMBER OF SERVERS
+resource "aws_ecs_service" "ecs-service" {
+  name            = "ecs-service"
+  cluster         = aws_ecs_cluster.my-first-cluster.id
+  task_definition = aws_ecs_task_definition.service.arn
+  desired_count   = 3  
+} 
+
+# SETTING UP CLUSTER
+resource "aws_ecs_cluster" "my-first-cluster" {
+  name = "first-ever-cluster"
+}
+
+
